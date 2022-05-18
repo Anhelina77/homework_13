@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=script, initial-scale=c">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function reverseNumber(value) {
+
+            let res = 0;
+            let number = typeof value === 'number' ? Math.abs(value) : 0;
+
+        while(number) {
+            res = (res * 10) + number % 10;
+            number = number / 10 | 0;
+            }
+        return res;
+        }
+
+
+        function isPalindrom(value) {
+
+            let text = '';
+            let res = false;
+
+        if (typeof value === 'number' && Math.abs(value) === reverseNumber(value)) {
+            res = true;
+
+        } else if (typeof value === 'string') {
+
+    text = value.toLowerCase().replace(/[^\wа-я]+/g, '')
+  }
+
+        if (text.length > 2) {
+
+            for (let a = 0, b = text.length - 1; a < b; a++, b--) {
+
+        if (text[a] === text[b]) {
+
+            res = true;
+        } else {
+
+            res = false;
+            break
+        }
+        }
+    }
+
+        return res;
+    }
+
+
+    function summPalindrom(value) {
+
+        let steps = 0;
+        let result = typeof value === 'number' ? Math.abs(value) : 0;
+
+            if (result) {
+            while(!isPalindrom(result)) {
+            result = result + reverseNumber(result);
+            steps++;
+            }
+        }
+
+        return {
+            result,
+            steps,
+        }
+    }
+
+
+    summPalindrom(22734)
+    </script>
+</body>
+</html>
